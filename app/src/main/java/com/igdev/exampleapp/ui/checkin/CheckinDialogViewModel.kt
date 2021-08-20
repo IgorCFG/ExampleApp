@@ -12,8 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CheckinDialogViewModel @Inject constructor(
-    private val eventRepository: IEventRepository,
-    private val viewManager: IViewManager
+    private val eventRepository: IEventRepository
 ): ViewModel() {
     //region Fields
 
@@ -28,13 +27,7 @@ class CheckinDialogViewModel @Inject constructor(
     fun sendCheckin(onSend: () -> Unit) = runBlocking {
         launch(Dispatchers.IO) {
             val checkin = Checkin(eventId, name, email)
-            val response = eventRepository.sendCheckIn(checkin)
-            val code = response.code
-
-            if (code == 200)
-                viewManager.showSnackbar("Check-in enviado com sucesso!")
-            else
-                viewManager.showSnackbar("Ocorreu o erro $code ao tentar enviar o check-in, tente novamente.")
+            eventRepository.sendCheckIn(checkin)
 
             onSend()
         }

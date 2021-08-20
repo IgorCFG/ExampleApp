@@ -36,12 +36,19 @@ class EventRepository @Inject constructor(
         return event
     }
 
-    override suspend fun sendCheckIn(checkin: Checkin): Code {
-        viewManager.startLoading("Enviando check-in...")
-        val isSent = apiInstance.postCheckIn(checkin)
+    override suspend fun sendCheckIn(checkin: Checkin) {
+        viewManager.startLoading("Fazendo seu check-in...")
+
+        val response = apiInstance.postCheckIn(checkin)
+        val code = response.code
+
+        if (code == 200)
+            viewManager.showSnackbar("Check-in enviado com sucesso!")
+        else
+            viewManager.showSnackbar(
+                "Ocorreu o erro $code ao tentar enviar o check-in, tente novamente.")
 
         viewManager.stopLoading()
-        return isSent
     }
 
     //endregion
