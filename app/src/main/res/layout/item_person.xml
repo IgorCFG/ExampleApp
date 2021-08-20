@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="2dp"
+    android:gravity="center">
+    <TextView
+        style="@style/TextViewDefault"
+        android:id="@+id/tvPersonPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight=".25"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textColor="?attr/colorSurface"
+        android:background="?attr/colorPrimaryVariant"
+        android:padding="5dp"
+        tools:text="picture 1"/>
+    <Space
+        android:layout_width="3dp"
+        android:layout_height="match_parent"/>
+    <TextView
+        style="@style/TextViewDefault"
+        android:id="@+id/tvPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight=".75"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textColor="?attr/colorSurface"
+        android:background="?attr/colorPrimaryVariant"
+        android:padding="5dp"
+        tools:text="name 1"/>
+</androidx.appcompat.widget.LinearLayoutCompat>

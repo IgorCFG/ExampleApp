@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TextView -->
+    <style name="TextViewDefault" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+    <style name="TextViewTitle" parent="TextViewDefault">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextViewInfo" parent="TextViewDefault">
+        <item name="android:textSize">12sp</item>
+    </style>
+</resources>

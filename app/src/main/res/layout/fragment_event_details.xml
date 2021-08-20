@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.igdev.exampleapp.ui.details.EventDetailsViewModel" />
+    </data>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- event details -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewTitle"
+                android:id="@+id/tvDetailsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@{viewModel.event.title}"
+                tools:text="Feira de adoção de animais na Redenção"/>
+
+            <TextView
+                style="@style/TextViewDefault"
+                android:id="@+id/tvDetailsPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold"
+                android:text="@{viewModel.entryPrice}"
+                tools:text="Valor da entrada R$29,99"/>
+
+            <TextView
+                style="@style/TextViewInfo"
+                android:id="@+id/tvDetailsDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold"
+                android:text="@{viewModel.eventDate}"
+                tools:text="Evento acontecerá dia 20 de agosto de 2018 às 17:00"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:scrollbarDefaultDelayBeforeFade="5000">
+
+                    <TextView
+                        style="@style/TextViewInfo"
+                        android:id="@+id/tvDetailsDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:text="@{viewModel.event.description}"
+                        tools:text="O Patas Dadas estará na Redenção, nesse domingo, com cães para adoção e produtos à venda!\n\nNa ocasião, teremos bottons, bloquinhos e camisetas!\n\nTraga seu Pet, os amigos e o chima, e venha aproveitar esse dia de sol com a gente e com alguns de nossos peludinhos - que estarão prontinhos para ganhar o ♥ de um humano bem legal pra chamar de seu. \n\nAceitaremos todos os tipos de doação:\n- guias e coleiras em bom estado\n- ração (as que mais precisamos no momento são sênior e filhote)\n- roupinhas \n- cobertas \n- remédios dentro do prazo de validade"/>
+
+            </ScrollView>
+
+            <TextView
+                style="@style/TextViewInfo"
+                android:id="@+id/tvDetailsAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:textAlignment="center"
+                android:textColor="?attr/colorPrimary"
+                android:text="@{viewModel.eventAddress}"
+                tools:text="Av. José Bonifácio, 245 - Farroupilha, Porto Alegre - RS, 90040-130, Brazil"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- people -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:orientation="vertical">
+
+            <!-- person quantity -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="?attr/colorOnSurface"
+                android:gravity="center"
+                android:padding="5dp">
+                <ImageView
+                    android:layout_width="14sp"
+                    android:layout_height="14sp"
+                    android:src="@drawable/ic_person"
+                    android:contentDescription="@string/search_icon"
+                    app:tint="?attr/colorSurface"/>
+                <TextView
+                    style="@style/TextViewInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorSurface"
+                    android:text="@{viewModel.event.people.size() + ` pessoa(s) irão participar deste evento`}"
+                    tools:text="3 pessoa(s) irão participar deste evento"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!-- list of events -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvEvents"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_person"
+                tools:itemCount="3"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- checkin -->
+        <Button
+            android:id="@+id/btCheckin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:text="@string/hey_i_want_to_go_too"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

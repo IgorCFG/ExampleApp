@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.igdev.exampleapp.ui.checkin.CheckinDialogViewModel" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <!-- dialog title -->
+        <TextView
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:text="@string/checkin"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <!-- data -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                app:startIconDrawable="@drawable/ic_person"
+                app:startIconContentDescription="@string/cd_person_icon">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:text="@={viewModel.name}"
+                    android:inputType="textPersonName"
+                    tools:ignore="Autofill,LabelFor"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                app:startIconDrawable="@drawable/ic_email"
+                app:startIconContentDescription="@string/cd_email_icon">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:text="@={viewModel.email}"
+                    android:inputType="textEmailAddress"
+                    tools:ignore="Autofill,LabelFor"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
+
+        <!-- buttons -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                style="?attr/materialButtonOutlinedStyle"
+                android:id="@+id/btCancel"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight=".4"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:text="@string/cancel"/>
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:id="@+id/btSendOrder"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight=".6"
+                android:text="@string/send"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

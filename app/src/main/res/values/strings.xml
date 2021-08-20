@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ExampleApp</string>
+    <string name="price">Preço</string>
+    <string name="click_for_more">Clique para mais informações</string>
+    <string name="search_icon">Ícone de busca (lupa)</string>
+    <string name="cd_touch_icon">Ícone de toque</string>
+    <string name="participants">Participantes</string>
+    <string name="event_details">Detalhes do evento</string>
+    <string name="events">Eventos</string>
+    <string name="cancel">Cancelar</string>
+    <string name="cd_email_icon">ícone de e-mail</string>
+    <string name="email">E-mail</string>
+    <string name="name">Nome</string>
+    <string name="cd_person_icon">ícone de pessoa</string>
+    <string name="checkin">Check-in</string>
+    <string name="send">Enviar</string>
+    <string name="hey_i_want_to_go_too">Ei, eu também quero ir!</string>
+</resources>
