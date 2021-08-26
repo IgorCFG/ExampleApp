@@ -6,6 +6,7 @@ import com.igdev.exampleapp.models.Checkin
 import com.igdev.exampleapp.models.Code
 import com.igdev.exampleapp.models.Event
 import com.igdev.exampleapp.repositories.interfaces.IEventRepository
+import java.lang.Exception
 import javax.inject.Inject
 
 class EventRepository @Inject constructor(
@@ -14,41 +15,60 @@ class EventRepository @Inject constructor(
 ): IEventRepository {
     //region Properties
 
-    private val apiInstance = apiManager.getInstance()!!
+    private val apiInstance = apiManager.getInstance()
 
     //endregion
 
     //region Override Methods
 
-    override suspend fun getEvents(): List<Event> {
+    override suspend fun getEvents(): List<Event>? {
         viewManager.startLoading("Buscando eventos...")
-        val events = apiInstance.getEvents()
+        var events: List<Event>? = null
+        try {
+            events = apiInstance.getEvents()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            viewManager.stopLoading()
+        }
 
-        viewManager.stopLoading()
         return events
     }
 
-    override suspend fun getEventById(id: String): Event {
+    override suspend fun getEventById(id: String): Event? {
         viewManager.startLoading("Buscando detalhes do evento...")
-        val event = apiInstance.getEventById(id)
+        var event: Event? = null
+        try {
+            event = apiInstance.getEventById(id)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            viewManager.stopLoading()
+        }
 
-        viewManager.stopLoading()
         return event
     }
 
-    override suspend fun sendCheckIn(checkin: Checkin) {
-        viewManager.startLoading("Fazendo seu check-in...")
-
-        val response = apiInstance.postCheckIn(checkin)
-        val code = response.code
-
-        if (code == 200)
-            viewManager.showSnackbar("Check-in enviado com sucesso!")
-        else
-            viewManager.showSnackbar(
-                "Ocorreu o erro $code ao tentar enviar o check-in, tente novamente.")
+    override suspend fun sendCheckIn(checkin: Checkin): Boolean {
+        viewManager.startLoading("Enviando check-in...")
+        var code: Code? = null
+        try {
+            code = apiInstance.postCheckIn(checkin)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            viewManager.stopLoading()
+        }
 
         viewManager.stopLoading()
+
+        val isSent = code?.code == 200
+        if (isSent)
+            viewManager.showSnackbar("Check-in enviado com sucesso!")
+        else
+            viewManager.showSnackbar("Ocorreu o erro ao tentar enviar o check-in, tente novamente.")
+
+        return isSent
     }
 
     //endregion

@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- generic -->
+    <dimen name="default_padding">10dp</dimen>
+    <dimen name="space_between_views">7dp</dimen>
+    <dimen name="separator_size">1px</dimen>
+
+    <!-- icons -->
+    <dimen name="icon_small_size">18dp</dimen>
+
+    <!-- item_event -->
+    <dimen name="space_between_cards">4dp</dimen>
+    <dimen name="min_card_height">150dp</dimen>
+
+    <!-- event_details -->
+    <dimen name="people_list_height">220dp</dimen>
+
+    <!-- info card -->
+    <dimen name="info_card_padding">5dp</dimen>
 </resources>

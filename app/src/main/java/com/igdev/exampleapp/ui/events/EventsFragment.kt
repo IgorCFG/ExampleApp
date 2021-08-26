@@ -48,7 +48,12 @@ class EventsFragment : Fragment() {
     //region Private Methods
 
     private fun setObservers() {
-        viewModel.events.observe(viewLifecycleOwner, this::refreshEventList)
+        viewModel.events.observe(viewLifecycleOwner, { events ->
+            events?.let {
+                refreshEventList(it)
+            }
+        })
+
         viewModel.getEventSelected().observe(viewLifecycleOwner, { eventId ->
             if (eventId.isEmpty()) return@observe
 

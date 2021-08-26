@@ -4,7 +4,7 @@ import java.util.*
 
 fun Long.toCalendar(): Calendar {
     val calendar = Calendar.getInstance(Locale.getDefault())
-    calendar.timeInMillis = this * 1000
+    calendar.timeInMillis = this
 
     return calendar
 }

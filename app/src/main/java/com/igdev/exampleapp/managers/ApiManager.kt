@@ -13,7 +13,7 @@ class ApiManager @Inject constructor(): IApiManager {
     @Volatile
     private var instanceCache: RetrofitApi? = null
 
-    override fun getInstance(): RetrofitApi? {
+    override fun getInstance(): RetrofitApi {
         synchronized(this) {
             var instance = instanceCache
             if (instance != null) return instance

@@ -10,9 +10,8 @@ import com.igdev.exampleapp.extensions.toShortMonth
 import com.igdev.exampleapp.models.Event
 import com.igdev.exampleapp.repositories.interfaces.IEventRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
+import java.lang.Exception
 import java.util.*
 import javax.inject.Inject
 
@@ -26,7 +25,7 @@ class EventDetailsViewModel @Inject constructor(
     private var event = MutableLiveData<Event>()
     private var eventDate = MutableLiveData<String>()
     private var entryPrice = MutableLiveData<String>()
-    private var eventAddress = MutableLiveData<String>()
+    private var eventAddress = MutableLiveData("Buscando endereço...")
 
     //endregion
 
@@ -43,12 +42,14 @@ class EventDetailsViewModel @Inject constructor(
 
     fun getEventDetails(eventId: String) = runBlocking {
         launch(Dispatchers.IO) {
-            val eventById = eventRepository.getEventById(eventId)
-
-            makeEventDateText(eventById)
-            makeEntryPriceText(eventById)
-            makeEventAddressText(eventById)
-            event.postValue(eventById)
+             eventRepository.getEventById(eventId)?.let {
+                 makeEventDateText(it)
+                 makeEntryPriceText(it)
+                 GlobalScope.async {
+                     makeEventAddressText(it)
+                 }
+                 event.postValue(it)
+             }
         }
     }
 
@@ -73,12 +74,17 @@ class EventDetailsViewModel @Inject constructor(
     }
 
     private fun makeEventAddressText(event: Event) {
-        val geocoder = Geocoder(getApplication())
-        val addresses = geocoder.getFromLocation(event.latitude, event.longitude, 1)
+        var address = "endereço não encontrado"
+        try {
+            val geocoder = Geocoder(getApplication())
+            val addresses = geocoder.getFromLocation(event.latitude, event.longitude, 1)
 
-        val address = addresses[0]
+            address = addresses[0].getAddressLine(0)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
-        eventAddress.postValue(address.getAddressLine(0))
+        eventAddress.postValue(address)
     }
 
     //endregion

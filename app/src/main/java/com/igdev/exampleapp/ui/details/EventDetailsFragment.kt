@@ -11,9 +11,13 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.igdev.exampleapp.R
 import com.igdev.exampleapp.databinding.FragmentEventDetailsBinding
+import com.igdev.exampleapp.extensions.hide
+import com.igdev.exampleapp.extensions.show
 import com.igdev.exampleapp.models.Person
 import com.igdev.exampleapp.ui.checkin.CheckinDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
 @AndroidEntryPoint
 class EventDetailsFragment: Fragment() {
@@ -28,24 +32,17 @@ class EventDetailsFragment: Fragment() {
 
     //region Overrides
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        viewModel.getEventDetails(args.eventId)
-    }
-
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_details, container, false)
 
+        binding.root.hide()
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         setObservers()
-
-        binding.btCheckin.setOnClickListener {
-            showCheckinDialog()
-        }
+        setClickListeners()
+        getEventDetails()
 
         return binding.root
     }
@@ -56,8 +53,19 @@ class EventDetailsFragment: Fragment() {
 
     private fun setObservers() {
         viewModel.getEvent().observe(viewLifecycleOwner, { event ->
+            binding.root.show()
             buildPeopleList(event.people)
         })
+    }
+
+    private fun setClickListeners() {
+        binding.btCheckin.setOnClickListener {
+            showCheckinDialog()
+        }
+    }
+
+    private fun getEventDetails() {
+        viewModel.getEventDetails(args.eventId)
     }
 
     private fun buildPeopleList(people: List<Person>) {

@@ -7,18 +7,18 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
+        android:padding="@dimen/default_padding"
         android:clickable="true"
         android:focusable="true"
         android:longClickable="true"
-        android:background="#44000000">
+        android:background="@color/alpha_background">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
             android:layout_gravity="center"
-            android:padding="10dp"
+            android:gravity="center"
+            android:padding="@dimen/default_padding"
             android:background="@drawable/background_rectangle">
             <TextView
                 style="@style/TextViewInfo"
@@ -27,11 +27,10 @@
                 android:layout_height="wrap_content"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="18sp"
-                android:padding="10dp"
                 tools:text="Autenticando usuário..."/>
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="10dp"/>
+                android:layout_height="@dimen/space_between_views"/>
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/progress"
                 android:layout_width="match_parent"

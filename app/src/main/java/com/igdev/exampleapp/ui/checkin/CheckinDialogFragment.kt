@@ -11,6 +11,9 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.igdev.exampleapp.R
 import com.igdev.exampleapp.databinding.FragmentDialogCheckinBinding
+import com.igdev.exampleapp.extensions.isNullOrEmpty
+import com.igdev.exampleapp.extensions.setRequiredValidation
+import com.igdev.exampleapp.managers.interfaces.IViewManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -19,6 +22,9 @@ class CheckinDialogFragment @Inject constructor(
     private val eventId: String
 ) : DialogFragment() {
     //region Fields
+
+    @Inject
+    lateinit var viewManager: IViewManager
 
     private val viewModel: CheckinDialogViewModel by viewModels()
 
@@ -38,6 +44,7 @@ class CheckinDialogFragment @Inject constructor(
 
         viewModel.eventId = eventId
 
+        setValidators()
         setClickListeners()
 
         return binding.root
@@ -64,12 +71,30 @@ class CheckinDialogFragment @Inject constructor(
 
     //region Private Methods
 
+    private fun setValidators() {
+        binding.etName.setRequiredValidation(
+            textInputLayout = binding.tilName,
+            isRequiredAtBegin = true)
+
+        binding.etEmail.setRequiredValidation(
+            textInputLayout = binding.tilEmail,
+            isRequiredAtBegin = true,
+            isEmailValidation = true)
+    }
+
     private fun setClickListeners() {
         binding.btCancel.setOnClickListener { dismiss() }
         binding.btSendOrder.setOnClickListener {
-            viewModel.sendCheckin { dismiss() }
+            if (isFieldsCorrectlyFilled())
+                viewModel.sendCheckin { dismiss() }
+            else
+                viewManager.showSnackbar("Nome e e-mail são obrigatórios!")
         }
     }
+
+    private fun isFieldsCorrectlyFilled(): Boolean =
+        binding.tilName.error.isNullOrEmpty() &&
+        binding.tilEmail.error.isNullOrEmpty()
 
     //endregion
 }

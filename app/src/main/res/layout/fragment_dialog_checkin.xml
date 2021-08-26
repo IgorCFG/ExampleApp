@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/default_padding">
 
         <!-- dialog title -->
         <TextView
@@ -26,7 +26,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="@dimen/space_between_views"/>
 
         <!-- data -->
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -37,17 +37,17 @@
             android:gravity="center">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
                 app:startIconDrawable="@drawable/ic_person"
                 app:startIconContentDescription="@string/cd_person_icon">
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextDefault"
                     android:id="@+id/etName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:singleLine="true"
-                    android:textSize="12sp"
                     android:text="@={viewModel.name}"
                     android:inputType="textPersonName"
                     tools:ignore="Autofill,LabelFor"/>
@@ -55,20 +55,20 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="5dp"/>
+                android:layout_height="@dimen/space_between_views"/>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
                 app:startIconDrawable="@drawable/ic_email"
                 app:startIconContentDescription="@string/cd_email_icon">
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextDefault"
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:singleLine="true"
-                    android:textSize="12sp"
                     android:text="@={viewModel.email}"
                     android:inputType="textEmailAddress"
                     tools:ignore="Autofill,LabelFor"/>
@@ -78,7 +78,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="40dp"/>
+            android:layout_height="@dimen/space_between_views"/>
 
         <!-- buttons -->
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -92,12 +92,12 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_weight=".4"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:textSize="12sp"
                 android:text="@string/cancel"/>
 
             <Space
-                android:layout_width="5dp"
+                android:layout_width="@dimen/space_between_views"
                 android:layout_height="match_parent"/>
 
             <Button

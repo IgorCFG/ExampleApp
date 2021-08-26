@@ -7,12 +7,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/background_rectangle"
-    android:layout_margin="3dp">
+    android:layout_margin="@dimen/space_between_cards">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="150dp"
+        android:minHeight="@dimen/min_card_height"
         android:orientation="horizontal">
 
         <!-- data -->
@@ -45,7 +45,7 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <View
-            android:layout_width="1px"
+            android:layout_width="@dimen/separator_size"
             android:layout_height="match_parent"
             android:background="?attr/colorOnSecondary"/>
 
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight=".6"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="@dimen/default_padding">
             <TextView
                 style="@style/TextViewTitle"
                 android:id="@+id/tvEventTitle"
@@ -73,7 +73,7 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <View
-            android:layout_width="1px"
+            android:layout_width="@dimen/separator_size"
             android:layout_height="match_parent"
             android:background="?attr/colorOnSecondary"/>
 
@@ -102,7 +102,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="10dp"/>
+                android:layout_height="5dp"/>
 
             <TextView
                 style="@style/TextViewInfo"
@@ -122,17 +122,18 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <!-- info card: click here -->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="?attr/colorOnSurface"
         android:gravity="center"
-        android:padding="3dp"
+        android:padding="@dimen/info_card_padding"
         android:layout_margin="1dp">
         <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="@dimen/icon_small_size"
+            android:layout_height="@dimen/icon_small_size"
             android:src="@drawable/ic_touch"
             app:tint="?attr/colorSurface"
             android:contentDescription="@string/cd_touch_icon" />

@@ -21,13 +21,16 @@
             android:orientation="horizontal"
             android:background="?attr/colorOnSurface"
             android:gravity="center"
-            android:padding="5dp">
+            android:padding="@dimen/info_card_padding">
             <ImageView
-                android:layout_width="14sp"
-                android:layout_height="14sp"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
                 android:src="@drawable/ic_search"
                 app:tint="?attr/colorSurface"
                 android:contentDescription="@string/search_icon" />
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="match_parent"/>
             <TextView
                 style="@style/TextViewInfo"
                 android:layout_width="wrap_content"

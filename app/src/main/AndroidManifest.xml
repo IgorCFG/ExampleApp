@@ -4,6 +4,7 @@
     package="com.igdev.exampleapp">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GPS" />
     <application
         android:name="com.igdev.exampleapp.CustomApplication"
         android:icon="@mipmap/ic_launcher"
